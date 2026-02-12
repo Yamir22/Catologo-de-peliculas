@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineCatalog - Tu catálogo de películas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Skip Link para accesibilidad -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🎬</span>
+                    <h1 class="logo-text">CineCatalog</h1>
+                </div>
+                <p class="header-subtitle">Descubre tu próxima película favorita</p>
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-wrapper">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="Buscar películas..."
+                    aria-label="Buscar películas">
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <main class="catalog-section" id="main-content">
+        <div class="container">
+            <h2 class="section-title">Catálogo de Películas</h2>
+            
+            <!-- Filtros y Controles -->
+            <div class="controls-wrapper">
+                <div class="filter-group">
+                    <label for="genreFilter" class="filter-label">
+                        <span aria-hidden="true">🎭</span>
+                        <span>Género:</span>
+                    </label>
+                    <select id="genreFilter" class="filter-select" aria-label="Filtrar por género">
+                        <option value="all">Todos</option>
+                        <option value="accion">Acción</option>
+                        <option value="aventura">Aventura</option>
+                        <option value="ciencia-ficcion">Ciencia Ficción</option>
+                        <option value="crimen">Crimen</option>
+                        <option value="drama">Drama</option>
+                        <option value="fantasia">Fantasía</option>
+                        <option value="romance">Romance</option>
+                        <option value="thriller">Thriller</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="sortOrder" class="filter-label">
+                        <span aria-hidden="true">⭐</span>
+                        <span>Ordenar:</span>
+                    </label>
+                    <select id="sortOrder" class="filter-select" aria-label="Ordenar películas">
+                        <option value="default">Por defecto</option>
+                        <option value="rating-desc">Rating: Mayor a Menor</option>
+                        <option value="rating-asc">Rating: Menor a Mayor</option>
+                        <option value="year-desc">Año: Más reciente</option>
+                        <option value="year-asc">Año: Más antiguo</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Tabs -->
+            <div class="tabs" role="tablist" aria-label="Opciones de visualización">
+                <button class="tab-button active" data-layout="flexbox" role="tab" aria-selected="true" aria-label="Ver en diseño Flexbox">
+                    📱 Flexbox
+                </button>
+                <button class="tab-button" data-layout="grid" role="tab" aria-selected="false" aria-label="Ver en diseño Grid">
+                    ⚡ Grid
+                </button>
+            </div>
+
+            <!-- Skeleton Loader -->
+            <div class="skeleton-wrapper skeleton-wrapper--hidden" id="skeletonLoader">
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </div>
+
+            <!-- Movies Grid -->
+            <div class="movies-container movies-container--flexbox" id="moviesContainer">
+                <!-- Movie Card 1 -->
+                <article class="movie-card" tabindex="0" data-genres="drama,crimen" data-rating="9.2" data-year="1972">
+                    <div class="movie-poster" role="img" aria-label="Poster de la película El Padrino">
+                        <img src="https://images.unsplash.com/photo-1574267432644-f610c4bb1ca8?w=400&h=600&fit=crop" alt="El Padrino" class="poster-image">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">El Padrino</h3>
+                        <p class="movie-year">1972</p>
+                        <p class="movie-genre">Drama, Crimen</p>
+                        <div class="movie-rating" aria-label="Calificación 9.2 de 10">⭐ 9.2</div>
+                    </div>
+                </article>
+
+                <!-- Movie Card 2 -->
+                <article class="movie-card" tabindex="0" data-genres="ciencia-ficcion" data-rating="8.8" data-year="2010">
+                    <div class="movie-poster" role="img" aria-label="Poster de la película Inception">
+                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=600&fit=crop" alt="Inception" class="poster-image">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Inception</h3>
+                        <p class="movie-year">2010</p>
+                        <p class="movie-genre">Ciencia Ficción</p>
+                        <div class="movie-rating" aria-label="Calificación 8.8 de 10">⭐ 8.8</div>
+                    </div>
+                </article>
+
+                <!-- Movie Card 3 -->
+                <article class="movie-card" tabindex="0" data-genres="crimen,drama" data-rating="8.9" data-year="1994">
+                    <div class="movie-poster" role="img" aria-label="Poster de la película Pulp Fiction">
+                        <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=400&h=600&fit=crop" alt="Pulp Fiction" class="poster-image">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Pulp Fiction</h3>
+                        <p class="movie-year">1994</p>
+                        <p class="movie-genre">Crimen, Drama</p>
+                        <div class="movie-rating" aria-label="Calificación 8.9 de 10">⭐ 8.9</div>
+                    </div>
+                </article>
+
+                <!-- Movie Card 4 -->
+                <article class="movie-card" tabindex="0" data-genres="ciencia-ficcion" data-rating="8.7" data-year="1999">
+                    <div class="movie-poster" role="img" aria-label="Poster de la película Matrix">
+                        <img src="https://images.unsplash.com/photo-1635805737707-575885ab0820?w=400&h=600&fit=crop" alt="Matrix" class="poster-image">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Matrix</h3>
+                        <p class="movie-year">1999</p>
+                        <p class="movie-genre">Ciencia Ficción</p>
+                        <div class="movie-rating" aria-label="Calificación 8.7 de 10">⭐ 8.7</div>
+                    </div>
+                </article>
+
+                <!-- Movie Card 5 -->
+                <article class="movie-card" tabindex="0" data-genres="drama,romance" data-rating="8.8" data-year="1994">
+                    <div class="movie-poster" role="img" aria-label="Poster de la película Forrest Gump">
+                        <img src="https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=400&h=600&fit=crop" alt="Forrest Gump" class="poster-image">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Forrest Gump</h3>
+                        <p class="movie-year">1994</p>
+                        <p class="movie-genre">Drama, Romance</p>
+                        <div class="movie-rating" aria-label="Calificación 8.8 de 10">⭐ 8.8</div>
+                    </div>
+                </article>
+
+                <!-- Movie Card 6 -->
+                <article class="movie-card" tabindex="0" data-genres="ciencia-ficcion" data-rating="8.6" data-year="2014">
+                    <div class="movie-poster" role="img" aria-label="Poster de la película Interestelar">
+                        <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=400&h=600&fit=crop" alt="Interestelar" class="poster-image">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Interestelar</h3>
+                        <p class="movie-year">2014</p>
+                        <p class="movie-genre">Ciencia Ficción</p>
+                        <div class="movie-rating" aria-label="Calificación 8.6 de 10">⭐ 8.6</div>
+                    </div>
+                </article>
+
+                <!-- Movie Card 7 -->
+                <article class="movie-card" tabindex="0" data-genres="accion,crimen" data-rating="9.0" data-year="2008">
+                    <div class="movie-poster" role="img" aria-label="Poster de la película El Caballero Oscuro">
+                        <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&h=600&fit=crop" alt="El Caballero Oscuro" class="poster-image">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">El Caballero Oscuro</h3>
+                        <p class="movie-year">2008</p>
+                        <p class="movie-genre">Acción, Crimen</p>
+                        <div class="movie-rating" aria-label="Calificación 9.0 de 10">⭐ 9.0</div>
+                    </div>
+                </article>
+
+                <!-- Movie Card 8 -->
+                <article class="movie-card" tabindex="0" data-genres="drama,thriller" data-rating="8.5" data-year="2019">
+                    <div class="movie-poster" role="img" aria-label="Poster de la película Parasite">
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=600&fit=crop" alt="Parasite" class="poster-image">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Parasite</h3>
+                        <p class="movie-year">2019</p>
+                        <p class="movie-genre">Drama, Thriller</p>
+                        <div class="movie-rating" aria-label="Calificación 8.5 de 10">⭐ 8.5</div>
+                    </div>
+                </article>
+
+                <!-- Movie Card 9 -->
+                <article class="movie-card" tabindex="0" data-genres="accion,drama" data-rating="8.5" data-year="2000">
+                    <div class="movie-poster" role="img" aria-label="Poster de la película Gladiador">
+                        <img src="https://images.unsplash.com/photo-1533928298208-27ff66555d8d?w=400&h=600&fit=crop" alt="Gladiador" class="poster-image">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Gladiador</h3>
+                        <p class="movie-year">2000</p>
+                        <p class="movie-genre">Acción, Drama</p>
+                        <div class="movie-rating" aria-label="Calificación 8.5 de 10">⭐ 8.5</div>
+                    </div>
+                </article>
+
+                <!-- Movie Card 10 -->
+                <article class="movie-card" tabindex="0" data-genres="aventura,fantasia" data-rating="8.9" data-year="2001">
+                    <div class="movie-poster" role="img" aria-label="Poster de la película El Señor de los Anillos">
+                        <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=400&h=600&fit=crop" alt="El Señor de los Anillos" class="poster-image">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">El Señor de los Anillos</h3>
+                        <p class="movie-year">2001</p>
+                        <p class="movie-genre">Aventura, Fantasía</p>
+                        <div class="movie-rating" aria-label="Calificación 8.9 de 10">⭐ 8.9</div>
+                    </div>
+                </article>
+
+                <!-- Movie Card 11 -->
+                <article class="movie-card" tabindex="0" data-genres="romance,drama" data-rating="7.9" data-year="1997">
+                    <div class="movie-poster" role="img" aria-label="Poster de la película Titanic">
+                        <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=400&h=600&fit=crop" alt="Titanic" class="poster-image">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Titanic</h3>
+                        <p class="movie-year">1997</p>
+                        <p class="movie-genre">Romance, Drama</p>
+                        <div class="movie-rating" aria-label="Calificación 7.9 de 10">⭐ 7.9</div>
+                    </div>
+                </article>
+
+                <!-- Movie Card 12 -->
+                <article class="movie-card" tabindex="0" data-genres="ciencia-ficcion" data-rating="7.8" data-year="2009">
+                    <div class="movie-poster" role="img" aria-label="Poster de la película Avatar">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=600&fit=crop" alt="Avatar" class="poster-image">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">Avatar</h3>
+                        <p class="movie-year">2009</p>
+                        <p class="movie-genre">Ciencia Ficción</p>
+                        <div class="movie-rating" aria-label="Calificación 7.8 de 10">⭐ 7.8</div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">© 2026 CineCatalog - Todos los derechos reservados</p>
+            <p class="footer-text">Hecho con ❤️ para amantes del cine</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ===== ELEMENTOS DEL DOM =====
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const moviesContainer = document.getElementById('moviesContainer');
+        const genreFilter = document.getElementById('genreFilter');
+        const sortOrder = document.getElementById('sortOrder');
+        const themeToggle = document.getElementById('themeToggle');
+        const skeletonLoader = document.getElementById('skeletonLoader');
+        const searchInput = document.querySelector('.search-input');
+        
+        let allMovies = Array.from(document.querySelectorAll('.movie-card'));
+
+        // ===== ANIMACIÓN INICIAL =====
+        // Aplicar animación de entrada solo la primera vez
+        allMovies.forEach((movie, index) => {
+            movie.classList.add('movie-card--initial');
+            movie.style.animationDelay = `${index * 0.05}s`;
+        });
+
+        // Limpiar clases de animación inicial después de cargar
+        setTimeout(() => {
+            allMovies.forEach(movie => {
+                movie.classList.remove('movie-card--initial');
+                movie.style.animationDelay = '';
+            });
+        }, 2000);
+
+        // ===== MODO OSCURO =====
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.classList.toggle('dark-mode', savedTheme === 'dark');
+        updateThemeIcon();
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', currentTheme);
+            updateThemeIcon();
+        });
+
+        function updateThemeIcon() {
+            const icon = themeToggle.querySelector('.theme-icon');
+            icon.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+
+        // ===== TABS / LAYOUT =====
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
+                
+                button.classList.add('active');
+                button.setAttribute('aria-selected', 'true');
+                
+                const layout = button.getAttribute('data-layout');
+                moviesContainer.className = 'movies-container';
+                moviesContainer.classList.add('movies-container--' + layout);
+            });
+
+            button.addEventListener('keydown', (e) => {
+                const currentIndex = Array.from(tabButtons).indexOf(button);
+                let nextIndex;
+
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextIndex = (currentIndex + 1) % tabButtons.length;
+                    tabButtons[nextIndex].focus();
+                    tabButtons[nextIndex].click();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    nextIndex = (currentIndex - 1 + tabButtons.length) % tabButtons.length;
+                    tabButtons[nextIndex].focus();
+                    tabButtons[nextIndex].click();
+                }
+            });
+        });
+
+        // ===== FILTROS Y ORDENAMIENTO =====
+        function showLoading() {
+            moviesContainer.classList.add('movies-container--hidden');
+            skeletonLoader.classList.remove('skeleton-wrapper--hidden');
+            setTimeout(() => {
+                skeletonLoader.classList.add('skeleton-wrapper--hidden');
+                moviesContainer.classList.remove('movies-container--hidden');
+            }, 500);
+        }
+
+        function filterAndSort() {
+            showLoading();
+            
+            const selectedGenre = genreFilter.value;
+            const selectedSort = sortOrder.value;
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            // Filtrar películas
+            let filteredMovies = allMovies.filter(movie => {
+                const genres = movie.dataset.genres.split(',');
+                const title = movie.querySelector('.movie-title').textContent.toLowerCase();
+                
+                const matchesGenre = selectedGenre === 'all' || genres.includes(selectedGenre);
+                const matchesSearch = title.includes(searchTerm);
+                
+                return matchesGenre && matchesSearch;
+            });
+            
+            // Ordenar películas
+            if (selectedSort !== 'default') {
+                filteredMovies.sort((a, b) => {
+                    const ratingA = parseFloat(a.dataset.rating);
+                    const ratingB = parseFloat(b.dataset.rating);
+                    const yearA = parseInt(a.dataset.year);
+                    const yearB = parseInt(b.dataset.year);
+                    
+                    switch(selectedSort) {
+                        case 'rating-desc':
+                            return ratingB - ratingA;
+                        case 'rating-asc':
+                            return ratingA - ratingB;
+                        case 'year-desc':
+                            return yearB - yearA;
+                        case 'year-asc':
+                            return yearA - yearB;
+                        default:
+                            return 0;
+                    }
+                });
+            }
+            
+            // Mostrar películas filtradas y ordenadas
+            allMovies.forEach(movie => {
+                movie.style.display = 'none';
+                movie.classList.remove('movie-card--filtered');
+            });
+            
+            filteredMovies.forEach(movie => {
+                movie.style.display = '';
+                // Agregar clase de animación para transición suave
+                movie.classList.add('movie-card--filtered');
+                // Remover la clase después de la animación
+                setTimeout(() => movie.classList.remove('movie-card--filtered'), 300);
+            });
+            
+            // Reorganizar en el DOM
+            filteredMovies.forEach(movie => moviesContainer.appendChild(movie));
+        }
+
+        // Event listeners para filtros
+        genreFilter.addEventListener('change', filterAndSort);
+        sortOrder.addEventListener('change', filterAndSort);
+        searchInput.addEventListener('input', filterAndSort);
+    </script>
+</body>
+</html>
