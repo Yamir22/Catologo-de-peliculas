@@ -1,5 +1,4 @@
 # Catologo-de-peliculas
-# Catologo-de-peliculas
 🚀 Cómo correr el proyecto
 Opción 1: Abrir directamente el HTML
 
